@@ -1,0 +1,18 @@
+[Unit]
+Description=IR Receiver Controller - Turn on and off receiver remotely
+After=network.target
+
+[Service]
+User=pi
+Group=pi
+Environment="PATH=/usr/bin:/usr/local/lib/IRReceiverController/.venv/bin:$PATH"
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=/usr/local/lib/IRReceiverController
+ExecStart=/usr/local/lib/IRReceiverController/.venv/bin/gunicorn -w 4 -b 0.0.0.0:5000 rax30_controller:app
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=irreceiver_controller
+TimeoutStartSec=infinity
+
+[Install]
+WantedBy=multi-user.target
