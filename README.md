@@ -6,7 +6,7 @@ How do I turn it on though when we do want to listen to music? Go down to the ba
 I looked up how the transistor worked [here](http://www.learningaboutelectronics.com/Articles/Transistor-switch-circuit.php). 
 The best GPIO diagram I could find was [pinoput.xyz](https://pinout.xyz).
 
-All the code really does is send IR commands using `irsend`, see [LIRC](https://www.lirc.org/). There are [tons of profiles](http://lirc.sourceforge.net/remotes/) for all kinds of remote controls out there. I have a _Yamaha RX30_, there was no profile for that one. I tried the _RAX26_ but no luck. So I had to record my own profile. I followed [this](https://www.instructables.com/id/Creating-a-Raspberry-Pi-Universal-Remote-With-LIRC/) tutorial. Beware of step 3, that's not compatible with Raspbian Buster, see above.
+All the code really does is send IR commands using `irsend`, see [LIRC](https://www.lirc.org/). There are [tons of profiles](http://lirc.sourceforge.net/remotes/) for all kinds of remote controls out there. I have a _Yamaha RX30_, there was no profile for that one. I tried the _RAX26_ but no luck. So I had to record my own profile. See [here](docs/create-profile.md) on how to do that. Beware of step 3, that's not compatible with Raspbian Buster, see above.
 To integrate it with existing home automation platforms, I added a simple REST API to trigger the `irsend` call. In the future I'd like to add MQTT as well.
 Finally we're installing the API as a `systemd` service.
 
